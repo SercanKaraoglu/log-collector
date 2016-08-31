@@ -1,0 +1,94 @@
+apply plugin: 'application'
+apply plugin: 'docker'
+
+startScripts {
+    doLast {
+        unixScript.text = unixScript.text.replace('\\$NODEIP', '$(hostname -i)')
+        unixScript.text = unixScript.text.replace('\\$clustered', '\$clustered')
+        unixScript.text = unixScript.text.replace('\\$files', '\$files')
+        unixScript.text = unixScript.text.replace('\\$conf', '\$conf')
+        unixScript.text = unixScript.text.replace('\\$profile', '\$profile')
+        unixScript.text = unixScript.text.replace('\\$region', '\$region')
+        unixScript.text = unixScript.text.replace('\\$path', '\$path')
+    }
+}
+
+mainClassName = 'com.foreks.vertx.launcher.VertxConfigLauncher'
+applicationDefaultJvmArgs = ['-Dconf=conf/$conf',
+                             '-Dprofile=$profile',
+                             '-Dregion=$region',
+                             '-Dpath=$path',
+                             '-Dfiles=$files',
+                             '-Dclustered=$clustered',
+                             '-Dlog4j.configuration=file:conf/log4j.xml',
+                             '-Xmx1g',
+                             '-Xms1g',
+                             '-Dcluster-xml=conf/cluster.xml',
+                             '-Dnodeip=$NODEIP',
+                             "-DmongoConfig=${file('../conf/mongoConfig.json').text}",
+                             '-DservingFolderPath=/data',
+                             '-Dzookeeper=zookeeper:2181',
+                             '-Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory',
+                             '-XX:+TieredCompilation',
+                             '-XX:+UseLargePages',
+                             '-XX:LargePageSizeInBytes=2m',
+                             '-XX:+UnlockDiagnosticVMOptions',
+                             '-XX:+AggressiveOpts',
+                             '-XX:+DoEscapeAnalysis',
+                             '-XX:+UseCompressedOops',
+                             '-XX:+UseTLAB',
+                             '-XX:MaxGCPauseMillis=100',
+                             '-XX:+UseG1GC',
+                             '-XX:+UseCompressedOops',
+                             '-XX:ParallelGCThreads=4',
+                             '-XX:ConcGCThreads=4',
+                             '-XX:InitiatingHeapOccupancyPercent=60',
+                             '-Xloggc:/tmp/logs/gc.log',
+                             '-server',
+                             '-d64',
+                             '-Dsun.rmi.dgc.server.gcInterval=0x7FFFFFFFFFFFFFFE',
+                             '-Dsun.rmi.dgc.client.gcInterval=0x7FFFFFFFFFFFFFFE',
+                             '-Dfile.encoding=UTF-8']
+dependencies {
+    compile project(':api')
+    compile "com.foreks:vertx-config-launcher:0.9.4"
+    compile 'io.vertx:vertx-mongo-client:3.3.2'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task copyConf(type: Copy) {
+    from System.getProperty('user.dir') + "/conf"
+    into "$buildDir/conf"
+}
+
+task createConf {
+    def conf = file("$buildDir/conf")
+    outputs.dir conf
+    doLast {
+        conf.mkdirs()
+        copyConf.execute()
+    }
+}
+
+distributions {
+    main {
+        contents {
+            from(createConf) { into "/conf" }
+        }
+    }
+}
+
+docker {
+    baseImage = 'sercankaraoglu/java-8'
+    maintainer = 'Sercan Karaoglu "hsercankaraoglu@gmail.com"'
+}
+//Usage
+//gradle distDocker -Penv=uat1 -Ppush=true
+
+distDocker {
+    tag = 'io.andromeda/log-collector'
+    if (project.version.endsWith('-SNAPSHOT')) {
+        version = 'latest'
+    }
+    push = project.hasProperty('push') ? project.property('push') : false
+}

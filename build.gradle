@@ -1,0 +1,74 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+    }
+}
+
+plugins {
+    id "com.monochromeroad.s3sync" version "0.10"
+}
+
+def env = project.hasProperty('env') ? project.getProperty('env') : 'dev'
+def configFile = file("$rootDir/buildConfig.groovy")
+def config = new ConfigSlurper(env).parse(configFile.toURL())
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    
+    description = """Reads TIP log file and dissaminates it on eventbus"""
+    
+    group = 'io.andromeda'
+    version = '1.0-SNAPSHOT'
+    
+    sourceSets {
+        main {
+            java { srcDir 'src/main/java' }
+            resources { srcDir 'src/main/resources' }
+        }
+        test {
+            java { srcDir 'src/test/java' }
+            resources { srcDir 'src/test/resources' }
+        }
+    }
+    repositories {
+        mavenCentral()
+    }
+    configurations.all {
+        // Check for updates every build
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+}
+import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
+
+task downloadConfig(type: S3Sync) {
+    description = "Configuration folder sync"
+    accessKey awsAccessKey
+    secretKey awsSecretKey
+    
+    configFile = "jets3t.properties"
+    
+    action = 'DOWN'
+    
+    from config.server.bucket
+    into "${System.getProperty('user.dir')}/conf"
+}
+
+task uploadConfig(type: S3Sync) {
+    description = "Configuration folder sync"
+    accessKey awsAccessKey
+    secretKey awsSecretKey
+    
+    configFile = "jets3t.properties"
+    
+    action = 'UP'
+    
+    from "${System.getProperty('user.dir')}/conf"
+    into config.server.bucket
+}
+
+task wrapper(type: Wrapper) { gradleVersion = '2.14' }

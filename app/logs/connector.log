@@ -1,0 +1,539 @@
+2016-08-17 10:52:14,701 DEBUG -- Couldn't find template in cache for "conf.json"("en_US", UTF-8, parsed); will try to load it. 
+2016-08-17 10:52:14,703 DEBUG -- TemplateLoader.findTemplateSource("conf_en_US.json"): Not found 
+2016-08-17 10:52:14,703 DEBUG -- TemplateLoader.findTemplateSource("conf_en.json"): Not found 
+2016-08-17 10:52:14,703 DEBUG -- TemplateLoader.findTemplateSource("conf.json"): Found 
+2016-08-17 10:52:14,704 DEBUG -- Loading template for "conf.json"("en_US", UTF-8, parsed) from "/home/sercan/git/file-reader/app/conf/conf.json" 
+2016-08-17 10:52:14,963 INFO  -- Config -> {
+  "verticles" : {
+    "com.foreks.feed.test.ConsoleWriter" : {
+      "deploymentOptions" : {
+        "config" : {
+          "files" : [ "karaoglu.log", "sercan.log", "cloud.log" ]
+        }
+      },
+      "instances" : 1,
+      "ha" : false,
+      "worker" : false,
+      "multiThreaded" : false
+    },
+    "com.foreks.feed.filereader.LocalFileReaderVerticle" : {
+      "deploymentOptions" : {
+        "config" : {
+          "path" : "/home/sercan/data/tmp"
+        }
+      },
+      "instances" : 1,
+      "ha" : true,
+      "worker" : false,
+      "multiThreaded" : false
+    },
+    "com.foreks.feed.filereader.S3FileReaderVerticle" : {
+      "deploymentOptions" : {
+        "config" : {
+          "profile" : "s3",
+          "region" : "us-east-1",
+          "path" : "sercan-deneme"
+        }
+      },
+      "instances" : 1,
+      "ha" : true,
+      "worker" : false,
+      "multiThreaded" : false
+    }
+  },
+  "vertxOptions" : {
+    "clustered" : false,
+    "clusterPingInterval" : 1000,
+    "clusterPingReplyInterval" : 1000,
+    "quorumSize" : 1,
+    "eventLoopPoolSize" : 4,
+    "haEnabled" : false,
+    "workerPoolSize" : 4
+  }
+} 
+2016-08-17 10:52:14,998 DEBUG -- Using SLF4J as the default logging framework 
+2016-08-17 10:52:15,004 DEBUG -- -Dio.netty.leakDetection.level: simple 
+2016-08-17 10:52:15,004 DEBUG -- -Dio.netty.leakDetection.maxRecords: 4 
+2016-08-17 10:52:15,018 DEBUG -- -Dio.netty.eventLoopThreads: 16 
+2016-08-17 10:52:15,035 DEBUG -- java.nio.Buffer.address: available 
+2016-08-17 10:52:15,035 DEBUG -- sun.misc.Unsafe.theUnsafe: available 
+2016-08-17 10:52:15,036 DEBUG -- sun.misc.Unsafe.copyMemory: available 
+2016-08-17 10:52:15,036 DEBUG -- java.nio.Bits.unaligned: true 
+2016-08-17 10:52:15,037 DEBUG -- java.nio.DirectByteBuffer.<init>(long, int): available 
+2016-08-17 10:52:15,038 DEBUG -- Java version: 8 
+2016-08-17 10:52:15,038 DEBUG -- -Dio.netty.noUnsafe: false 
+2016-08-17 10:52:15,038 DEBUG -- sun.misc.Unsafe: available 
+2016-08-17 10:52:15,038 DEBUG -- -Dio.netty.noJavassist: false 
+2016-08-17 10:52:15,119 DEBUG -- Javassist: available 
+2016-08-17 10:52:15,120 DEBUG -- -Dio.netty.tmpdir: /tmp (java.io.tmpdir) 
+2016-08-17 10:52:15,120 DEBUG -- -Dio.netty.bitMode: 64 (sun.arch.data.model) 
+2016-08-17 10:52:15,120 DEBUG -- -Dio.netty.noPreferDirect: false 
+2016-08-17 10:52:15,120 DEBUG -- io.netty.maxDirectMemory: 1073741824 bytes 
+2016-08-17 10:52:15,135 DEBUG -- -Dio.netty.noKeySetOptimization: false 
+2016-08-17 10:52:15,135 DEBUG -- -Dio.netty.selectorAutoRebuildThreshold: 512 
+2016-08-17 10:52:15,161 DEBUG -- Default DNS servers: [/127.0.1.1:53] (sun.net.dns.ResolverConfiguration) 
+2016-08-17 10:52:15,166 DEBUG -- -Djava.net.preferIPv6Addresses: false 
+2016-08-17 10:52:15,172 DEBUG -- Generated: io.netty.util.internal.__matchers__.io.netty.channel.socket.DatagramPacketMatcher 
+2016-08-17 10:52:15,176 DEBUG -- Generated: io.netty.util.internal.__matchers__.io.netty.channel.AddressedEnvelopeMatcher 
+2016-08-17 10:52:15,179 DEBUG -- Loopback interface: lo (lo, 127.0.0.1) 
+2016-08-17 10:52:15,180 DEBUG -- /proc/sys/net/core/somaxconn: 128 
+2016-08-17 10:52:15,245 INFO  -- ConsoleWriter Verticle starting 
+2016-08-17 10:52:15,245 INFO  -- FileServer Verticle starting 
+2016-08-17 10:52:15,272 INFO  --  STATUS->Waiting For Service Arrival 
+2016-08-17 10:52:15,280 INFO  --  STATUS->Waiting For Service Arrival 
+2016-08-17 10:52:15,283 INFO  --  STATUS->Waiting For Service Arrival 
+2016-08-17 10:52:15,285 INFO  -- FileServer Verticle starting 
+2016-08-17 10:52:15,286 INFO  -- Verticle Deployed 5cd1dfc2-f99c-4f5e-b578-78ab4cd07213 
+2016-08-17 10:52:15,292 INFO  -- Verticle Deployed 7464da2d-21ca-46a2-8e82-60d876627089 
+2016-08-17 10:52:15,403 DEBUG -- Configuration override awssdk_config_override.json not found. 
+2016-08-17 10:52:15,642 DEBUG -- Sending Request: GET https://sercan-deneme.s3.amazonaws.com / Headers: (User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101, Content-Type: application/x-www-form-urlencoded; charset=utf-8, )  
+2016-08-17 10:52:15,699 DEBUG -- Calculated string to sign:
+"GET
+
+application/x-www-form-urlencoded; charset=utf-8
+Wed, 17 Aug 2016 07:52:15 GMT
+/sercan-deneme/" 
+2016-08-17 10:52:15,795 DEBUG -- Connection request: [route: {s}->https://sercan-deneme.s3.amazonaws.com][total kept alive: 0; route allocated: 0 of 50; total allocated: 0 of 50] 
+2016-08-17 10:52:15,803 DEBUG -- Connection leased: [id: 0][route: {s}->https://sercan-deneme.s3.amazonaws.com][total kept alive: 0; route allocated: 1 of 50; total allocated: 1 of 50] 
+2016-08-17 10:52:15,971 DEBUG -- socket.getSupportedProtocols(): [SSLv2Hello, SSLv3, TLSv1, TLSv1.1, TLSv1.2], socket.getEnabledProtocols(): [TLSv1, TLSv1.1, TLSv1.2] 
+2016-08-17 10:52:15,972 DEBUG -- TLS protocol enabled for SSL handshake: [TLSv1.2, TLSv1.1, TLSv1] 
+2016-08-17 10:52:15,972 DEBUG -- Connecting to sercan-deneme.s3.amazonaws.com:443 
+2016-08-17 10:52:16,315 DEBUG -- CookieSpec selected: best-match 
+2016-08-17 10:52:16,328 DEBUG -- Auth cache not set in the context 
+2016-08-17 10:52:16,329 DEBUG -- Proxy auth state: UNCHALLENGED 
+2016-08-17 10:52:16,329 DEBUG -- Attempt 1 to execute request 
+2016-08-17 10:52:16,330 DEBUG -- Sending request: GET / HTTP/1.1 
+2016-08-17 10:52:16,330 DEBUG --  >> "GET / HTTP/1.1[\r][\n]" 
+2016-08-17 10:52:16,331 DEBUG --  >> "Host: sercan-deneme.s3.amazonaws.com[\r][\n]" 
+2016-08-17 10:52:16,331 DEBUG --  >> "Authorization: AWS AKIAJSRJ5I6PMJTPERPQ:O27y5bXIVPygJqOI04VGTcBdWbc=[\r][\n]" 
+2016-08-17 10:52:16,331 DEBUG --  >> "User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101[\r][\n]" 
+2016-08-17 10:52:16,332 DEBUG --  >> "Date: Wed, 17 Aug 2016 07:52:15 GMT[\r][\n]" 
+2016-08-17 10:52:16,332 DEBUG --  >> "Content-Type: application/x-www-form-urlencoded; charset=utf-8[\r][\n]" 
+2016-08-17 10:52:16,332 DEBUG --  >> "Connection: Keep-Alive[\r][\n]" 
+2016-08-17 10:52:16,332 DEBUG --  >> "[\r][\n]" 
+2016-08-17 10:52:16,332 DEBUG -- >> GET / HTTP/1.1 
+2016-08-17 10:52:16,332 DEBUG -- >> Host: sercan-deneme.s3.amazonaws.com 
+2016-08-17 10:52:16,332 DEBUG -- >> Authorization: AWS AKIAJSRJ5I6PMJTPERPQ:O27y5bXIVPygJqOI04VGTcBdWbc= 
+2016-08-17 10:52:16,332 DEBUG -- >> User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101 
+2016-08-17 10:52:16,332 DEBUG -- >> Date: Wed, 17 Aug 2016 07:52:15 GMT 
+2016-08-17 10:52:16,332 DEBUG -- >> Content-Type: application/x-www-form-urlencoded; charset=utf-8 
+2016-08-17 10:52:16,332 DEBUG -- >> Connection: Keep-Alive 
+2016-08-17 10:52:16,393 DEBUG --  << "HTTP/1.1 400 Bad Request[\r][\n]" 
+2016-08-17 10:52:16,396 DEBUG --  << "x-amz-bucket-region: eu-central-1[\r][\n]" 
+2016-08-17 10:52:16,396 DEBUG --  << "x-amz-request-id: EDFD3C1967CBDF16[\r][\n]" 
+2016-08-17 10:52:16,396 DEBUG --  << "x-amz-id-2: 2f8U66i601A5PJPHXCueL6CEZaPMHa2vTPgojnnMnO1OT+yGn9hh6ZvkFExvZqFy4Kcv2E/7Yy0=[\r][\n]" 
+2016-08-17 10:52:16,396 DEBUG --  << "x-amz-region: eu-central-1[\r][\n]" 
+2016-08-17 10:52:16,396 DEBUG --  << "Content-Type: application/xml[\r][\n]" 
+2016-08-17 10:52:16,396 DEBUG --  << "Transfer-Encoding: chunked[\r][\n]" 
+2016-08-17 10:52:16,397 DEBUG --  << "Date: Wed, 17 Aug 2016 07:52:22 GMT[\r][\n]" 
+2016-08-17 10:52:16,397 DEBUG --  << "Connection: close[\r][\n]" 
+2016-08-17 10:52:16,397 DEBUG --  << "Server: AmazonS3[\r][\n]" 
+2016-08-17 10:52:16,397 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:16,398 DEBUG -- Receiving response: HTTP/1.1 400 Bad Request 
+2016-08-17 10:52:16,398 DEBUG -- << HTTP/1.1 400 Bad Request 
+2016-08-17 10:52:16,398 DEBUG -- << x-amz-bucket-region: eu-central-1 
+2016-08-17 10:52:16,398 DEBUG -- << x-amz-request-id: EDFD3C1967CBDF16 
+2016-08-17 10:52:16,398 DEBUG -- << x-amz-id-2: 2f8U66i601A5PJPHXCueL6CEZaPMHa2vTPgojnnMnO1OT+yGn9hh6ZvkFExvZqFy4Kcv2E/7Yy0= 
+2016-08-17 10:52:16,398 DEBUG -- << x-amz-region: eu-central-1 
+2016-08-17 10:52:16,399 DEBUG -- << Content-Type: application/xml 
+2016-08-17 10:52:16,399 DEBUG -- << Transfer-Encoding: chunked 
+2016-08-17 10:52:16,399 DEBUG -- << Date: Wed, 17 Aug 2016 07:52:22 GMT 
+2016-08-17 10:52:16,399 DEBUG -- << Connection: close 
+2016-08-17 10:52:16,399 DEBUG -- << Server: AmazonS3 
+2016-08-17 10:52:16,422 DEBUG --  << "144[\r][\n]" 
+2016-08-17 10:52:16,422 DEBUG --  << "<?xml version="1.0" encoding="UTF-8"?>[\n]" 
+2016-08-17 10:52:16,422 DEBUG --  << "<Error><Code>InvalidRequest</Code><Message>The authorization mechanism you have provided is not supported. Please use AWS4-HMAC-SHA256.</Message><RequestId>EDFD3C1967CBDF16</RequestId><HostId>2f8U66i601A5PJPHXCueL6CEZaPMHa2vTPgojnnMnO1OT+yGn9hh6ZvkFExvZqFy4Kcv2E/7Yy0=</HostId></Error>" 
+2016-08-17 10:52:16,423 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:16,423 DEBUG --  << "0[\r][\n]" 
+2016-08-17 10:52:16,423 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:16,424 DEBUG -- Connection 0.0.0.0:39026<->54.231.193.36:443 closed 
+2016-08-17 10:52:16,424 DEBUG -- Connection released: [id: 0][route: {s}->https://sercan-deneme.s3.amazonaws.com][total kept alive: 0; route allocated: 0 of 50; total allocated: 0 of 50] 
+2016-08-17 10:52:16,431 DEBUG -- Received error response: com.amazonaws.services.s3.model.AmazonS3Exception: The authorization mechanism you have provided is not supported. Please use AWS4-HMAC-SHA256. (Service: null; Status Code: 400; Error Code: InvalidRequest; Request ID: EDFD3C1967CBDF16), S3 Extended Request ID: 2f8U66i601A5PJPHXCueL6CEZaPMHa2vTPgojnnMnO1OT+yGn9hh6ZvkFExvZqFy4Kcv2E/7Yy0= 
+2016-08-17 10:52:16,434 WARN  -- Attempting to re-send the request to sercan-deneme.s3-external-1.amazonaws.com with AWS V4 authentication. To avoid this warning in the future, please use region-specific endpoint to access buckets located in regions that require V4 signing. 
+2016-08-17 10:52:16,435 DEBUG -- Sending Request: GET https://sercan-deneme.s3-external-1.amazonaws.com / Headers: (User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101, Content-Type: application/x-www-form-urlencoded; charset=utf-8, )  
+2016-08-17 10:52:16,438 DEBUG -- AWS4 Canonical Request: '"GET
+/
+
+content-type:application/x-www-form-urlencoded; charset=utf-8
+host:sercan-deneme.s3-external-1.amazonaws.com
+user-agent:aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20160817T075216Z
+
+content-type;host;user-agent;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" 
+2016-08-17 10:52:16,438 DEBUG -- AWS4 String to Sign: '"AWS4-HMAC-SHA256
+20160817T075216Z
+20160817/us-east-1/s3/aws4_request
+953a08f3009f06704f3c99c4a9f2939de31a5820e9ff80552c64258c6fabf277" 
+2016-08-17 10:52:16,439 DEBUG -- Retriable error detected, will retry in 0ms, attempt number: 0 
+2016-08-17 10:52:16,440 DEBUG -- Connection request: [route: {s}->https://sercan-deneme.s3-external-1.amazonaws.com][total kept alive: 0; route allocated: 0 of 50; total allocated: 0 of 50] 
+2016-08-17 10:52:16,440 DEBUG -- Connection leased: [id: 1][route: {s}->https://sercan-deneme.s3-external-1.amazonaws.com][total kept alive: 0; route allocated: 1 of 50; total allocated: 1 of 50] 
+2016-08-17 10:52:16,564 DEBUG -- socket.getSupportedProtocols(): [SSLv2Hello, SSLv3, TLSv1, TLSv1.1, TLSv1.2], socket.getEnabledProtocols(): [TLSv1, TLSv1.1, TLSv1.2] 
+2016-08-17 10:52:16,564 DEBUG -- TLS protocol enabled for SSL handshake: [TLSv1.2, TLSv1.1, TLSv1] 
+2016-08-17 10:52:16,564 DEBUG -- Connecting to sercan-deneme.s3-external-1.amazonaws.com:443 
+2016-08-17 10:52:17,158 DEBUG -- CookieSpec selected: best-match 
+2016-08-17 10:52:17,158 DEBUG -- Auth cache not set in the context 
+2016-08-17 10:52:17,159 DEBUG -- Proxy auth state: UNCHALLENGED 
+2016-08-17 10:52:17,159 DEBUG -- Attempt 1 to execute request 
+2016-08-17 10:52:17,159 DEBUG -- Sending request: GET / HTTP/1.1 
+2016-08-17 10:52:17,159 DEBUG --  >> "GET / HTTP/1.1[\r][\n]" 
+2016-08-17 10:52:17,159 DEBUG --  >> "Host: sercan-deneme.s3-external-1.amazonaws.com[\r][\n]" 
+2016-08-17 10:52:17,159 DEBUG --  >> "x-amz-content-sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855[\r][\n]" 
+2016-08-17 10:52:17,159 DEBUG --  >> "Authorization: AWS4-HMAC-SHA256 Credential=AKIAJSRJ5I6PMJTPERPQ/20160817/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date, Signature=4613f4f46352fc72af596004ae25302afd8c5dc6db700b026455345d32d44de8[\r][\n]" 
+2016-08-17 10:52:17,159 DEBUG --  >> "X-Amz-Date: 20160817T075216Z[\r][\n]" 
+2016-08-17 10:52:17,160 DEBUG --  >> "User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101[\r][\n]" 
+2016-08-17 10:52:17,160 DEBUG --  >> "Content-Type: application/x-www-form-urlencoded; charset=utf-8[\r][\n]" 
+2016-08-17 10:52:17,160 DEBUG --  >> "Connection: Keep-Alive[\r][\n]" 
+2016-08-17 10:52:17,160 DEBUG --  >> "[\r][\n]" 
+2016-08-17 10:52:17,160 DEBUG -- >> GET / HTTP/1.1 
+2016-08-17 10:52:17,160 DEBUG -- >> Host: sercan-deneme.s3-external-1.amazonaws.com 
+2016-08-17 10:52:17,160 DEBUG -- >> x-amz-content-sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 
+2016-08-17 10:52:17,160 DEBUG -- >> Authorization: AWS4-HMAC-SHA256 Credential=AKIAJSRJ5I6PMJTPERPQ/20160817/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date, Signature=4613f4f46352fc72af596004ae25302afd8c5dc6db700b026455345d32d44de8 
+2016-08-17 10:52:17,160 DEBUG -- >> X-Amz-Date: 20160817T075216Z 
+2016-08-17 10:52:17,160 DEBUG -- >> User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101 
+2016-08-17 10:52:17,160 DEBUG -- >> Content-Type: application/x-www-form-urlencoded; charset=utf-8 
+2016-08-17 10:52:17,160 DEBUG -- >> Connection: Keep-Alive 
+2016-08-17 10:52:17,302 DEBUG --  << "HTTP/1.1 307 Temporary Redirect[\r][\n]" 
+2016-08-17 10:52:17,302 DEBUG --  << "x-amz-bucket-region: eu-central-1[\r][\n]" 
+2016-08-17 10:52:17,302 DEBUG --  << "x-amz-request-id: 7F42B1FE7879105F[\r][\n]" 
+2016-08-17 10:52:17,302 DEBUG --  << "x-amz-id-2: 5jxNC8nSKRlHPG24N8jEmQGulLK5xsYFHst9iBTWtdYAkOOPV+hQ4p6o2OxGRIiB[\r][\n]" 
+2016-08-17 10:52:17,303 DEBUG --  << "Location: https://sercan-deneme.s3.eu-central-1.amazonaws.com/[\r][\n]" 
+2016-08-17 10:52:17,303 DEBUG --  << "Content-Type: application/xml[\r][\n]" 
+2016-08-17 10:52:17,303 DEBUG --  << "Transfer-Encoding: chunked[\r][\n]" 
+2016-08-17 10:52:17,303 DEBUG --  << "Date: Wed, 17 Aug 2016 07:52:23 GMT[\r][\n]" 
+2016-08-17 10:52:17,303 DEBUG --  << "Server: AmazonS3[\r][\n]" 
+2016-08-17 10:52:17,303 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:17,303 DEBUG -- Receiving response: HTTP/1.1 307 Temporary Redirect 
+2016-08-17 10:52:17,303 DEBUG -- << HTTP/1.1 307 Temporary Redirect 
+2016-08-17 10:52:17,303 DEBUG -- << x-amz-bucket-region: eu-central-1 
+2016-08-17 10:52:17,303 DEBUG -- << x-amz-request-id: 7F42B1FE7879105F 
+2016-08-17 10:52:17,303 DEBUG -- << x-amz-id-2: 5jxNC8nSKRlHPG24N8jEmQGulLK5xsYFHst9iBTWtdYAkOOPV+hQ4p6o2OxGRIiB 
+2016-08-17 10:52:17,303 DEBUG -- << Location: https://sercan-deneme.s3.eu-central-1.amazonaws.com/ 
+2016-08-17 10:52:17,304 DEBUG -- << Content-Type: application/xml 
+2016-08-17 10:52:17,304 DEBUG -- << Transfer-Encoding: chunked 
+2016-08-17 10:52:17,304 DEBUG -- << Date: Wed, 17 Aug 2016 07:52:23 GMT 
+2016-08-17 10:52:17,304 DEBUG -- << Server: AmazonS3 
+2016-08-17 10:52:17,305 DEBUG -- Connection can be kept alive indefinitely 
+2016-08-17 10:52:17,306 DEBUG -- Redirecting to: https://sercan-deneme.s3.eu-central-1.amazonaws.com/ 
+2016-08-17 10:52:17,307 DEBUG --  << "1c0[\r][\n]" 
+2016-08-17 10:52:17,307 DEBUG --  << "<?xml version="1.0" encoding="UTF-8"?>[\n]" 
+2016-08-17 10:52:17,307 DEBUG --  << "<Error><Code>TemporaryRedirect</Code><Message>Please re-send this request to the specified temporary endpoint. Continue to use the original request endpoint for future requests.</Message><Bucket>sercan-deneme</Bucket><Endpoint>sercan-deneme.s3.eu-central-1.amazonaws.com</Endpoint><RequestId>7F42B1FE7879105F</RequestId><HostId>5jxNC8nSKRlHPG24N8jEmQGulLK5xsYFHst9iBTWtdYAkOOPV+hQ4p6o2OxGRIiB</HostId></Error>" 
+2016-08-17 10:52:17,307 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:17,307 DEBUG --  << "0[\r][\n]" 
+2016-08-17 10:52:17,307 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:17,307 DEBUG -- Connection [id: 1][route: {s}->https://sercan-deneme.s3-external-1.amazonaws.com] can be kept alive indefinitely 
+2016-08-17 10:52:17,307 DEBUG -- Connection released: [id: 1][route: {s}->https://sercan-deneme.s3-external-1.amazonaws.com][total kept alive: 1; route allocated: 1 of 50; total allocated: 1 of 50] 
+2016-08-17 10:52:17,308 DEBUG -- Sending Request: GET https://sercan-deneme.s3.eu-central-1.amazonaws.com / Headers: (User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101, Content-Type: application/x-www-form-urlencoded; charset=utf-8, )  
+2016-08-17 10:52:17,310 DEBUG -- AWS4 Canonical Request: '"GET
+/
+
+content-type:application/x-www-form-urlencoded; charset=utf-8
+host:sercan-deneme.s3.eu-central-1.amazonaws.com
+user-agent:aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20160817T075217Z
+
+content-type;host;user-agent;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" 
+2016-08-17 10:52:17,310 DEBUG -- AWS4 String to Sign: '"AWS4-HMAC-SHA256
+20160817T075217Z
+20160817/eu-central-1/s3/aws4_request
+8b07ae6b06e5f2043dd6660d14ac78e2c2c2799a136b3d4072b66c34a7bbfd58" 
+2016-08-17 10:52:17,312 DEBUG -- Connection request: [route: {s}->https://sercan-deneme.s3.eu-central-1.amazonaws.com][total kept alive: 1; route allocated: 0 of 50; total allocated: 1 of 50] 
+2016-08-17 10:52:17,312 DEBUG -- Connection leased: [id: 2][route: {s}->https://sercan-deneme.s3.eu-central-1.amazonaws.com][total kept alive: 1; route allocated: 1 of 50; total allocated: 2 of 50] 
+2016-08-17 10:52:17,683 DEBUG -- socket.getSupportedProtocols(): [SSLv2Hello, SSLv3, TLSv1, TLSv1.1, TLSv1.2], socket.getEnabledProtocols(): [TLSv1, TLSv1.1, TLSv1.2] 
+2016-08-17 10:52:17,684 DEBUG -- TLS protocol enabled for SSL handshake: [TLSv1.2, TLSv1.1, TLSv1] 
+2016-08-17 10:52:17,684 DEBUG -- Connecting to sercan-deneme.s3.eu-central-1.amazonaws.com:443 
+2016-08-17 10:52:17,969 DEBUG -- CookieSpec selected: best-match 
+2016-08-17 10:52:17,969 DEBUG -- Auth cache not set in the context 
+2016-08-17 10:52:17,969 DEBUG -- Proxy auth state: UNCHALLENGED 
+2016-08-17 10:52:17,969 DEBUG -- Attempt 1 to execute request 
+2016-08-17 10:52:17,969 DEBUG -- Sending request: GET / HTTP/1.1 
+2016-08-17 10:52:17,970 DEBUG --  >> "GET / HTTP/1.1[\r][\n]" 
+2016-08-17 10:52:17,970 DEBUG --  >> "Host: sercan-deneme.s3.eu-central-1.amazonaws.com[\r][\n]" 
+2016-08-17 10:52:17,970 DEBUG --  >> "x-amz-content-sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855[\r][\n]" 
+2016-08-17 10:52:17,970 DEBUG --  >> "Authorization: AWS4-HMAC-SHA256 Credential=AKIAJSRJ5I6PMJTPERPQ/20160817/eu-central-1/s3/aws4_request, SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date, Signature=2bfb8f8ad6317c2b0dd7acd3827897bd437130be096a9937626ea4e6b7cd5ceb[\r][\n]" 
+2016-08-17 10:52:17,970 DEBUG --  >> "X-Amz-Date: 20160817T075217Z[\r][\n]" 
+2016-08-17 10:52:17,970 DEBUG --  >> "User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101[\r][\n]" 
+2016-08-17 10:52:17,970 DEBUG --  >> "Content-Type: application/x-www-form-urlencoded; charset=utf-8[\r][\n]" 
+2016-08-17 10:52:17,970 DEBUG --  >> "Connection: Keep-Alive[\r][\n]" 
+2016-08-17 10:52:17,970 DEBUG --  >> "[\r][\n]" 
+2016-08-17 10:52:17,971 DEBUG -- >> GET / HTTP/1.1 
+2016-08-17 10:52:17,971 DEBUG -- >> Host: sercan-deneme.s3.eu-central-1.amazonaws.com 
+2016-08-17 10:52:17,971 DEBUG -- >> x-amz-content-sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 
+2016-08-17 10:52:17,971 DEBUG -- >> Authorization: AWS4-HMAC-SHA256 Credential=AKIAJSRJ5I6PMJTPERPQ/20160817/eu-central-1/s3/aws4_request, SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date, Signature=2bfb8f8ad6317c2b0dd7acd3827897bd437130be096a9937626ea4e6b7cd5ceb 
+2016-08-17 10:52:17,971 DEBUG -- >> X-Amz-Date: 20160817T075217Z 
+2016-08-17 10:52:17,971 DEBUG -- >> User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101 
+2016-08-17 10:52:17,971 DEBUG -- >> Content-Type: application/x-www-form-urlencoded; charset=utf-8 
+2016-08-17 10:52:17,971 DEBUG -- >> Connection: Keep-Alive 
+2016-08-17 10:52:18,013 WARN  -- Thread Thread[vert.x-eventloop-thread-0,5,main] has been blocked for 2727 ms, time limit is 2000 
+2016-08-17 10:52:18,055 DEBUG --  << "HTTP/1.1 200 OK[\r][\n]" 
+2016-08-17 10:52:18,056 DEBUG --  << "x-amz-id-2: qDVhopKYoxfRnRIoF7n2Bs4loc2AgTrivG+UHa2VdMsq0bPlixkMFa9+MhBrFmesnFek4ft0vJE=[\r][\n]" 
+2016-08-17 10:52:18,056 DEBUG --  << "x-amz-request-id: 9AB9A7EBEF1F0518[\r][\n]" 
+2016-08-17 10:52:18,056 DEBUG --  << "Date: Wed, 17 Aug 2016 07:52:26 GMT[\r][\n]" 
+2016-08-17 10:52:18,056 DEBUG --  << "x-amz-bucket-region: eu-central-1[\r][\n]" 
+2016-08-17 10:52:18,056 DEBUG --  << "Content-Type: application/xml[\r][\n]" 
+2016-08-17 10:52:18,056 DEBUG --  << "Transfer-Encoding: chunked[\r][\n]" 
+2016-08-17 10:52:18,056 DEBUG --  << "Server: AmazonS3[\r][\n]" 
+2016-08-17 10:52:18,056 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,056 DEBUG -- Receiving response: HTTP/1.1 200 OK 
+2016-08-17 10:52:18,056 DEBUG -- << HTTP/1.1 200 OK 
+2016-08-17 10:52:18,057 DEBUG -- << x-amz-id-2: qDVhopKYoxfRnRIoF7n2Bs4loc2AgTrivG+UHa2VdMsq0bPlixkMFa9+MhBrFmesnFek4ft0vJE= 
+2016-08-17 10:52:18,057 DEBUG -- << x-amz-request-id: 9AB9A7EBEF1F0518 
+2016-08-17 10:52:18,057 DEBUG -- << Date: Wed, 17 Aug 2016 07:52:26 GMT 
+2016-08-17 10:52:18,057 DEBUG -- << x-amz-bucket-region: eu-central-1 
+2016-08-17 10:52:18,057 DEBUG -- << Content-Type: application/xml 
+2016-08-17 10:52:18,057 DEBUG -- << Transfer-Encoding: chunked 
+2016-08-17 10:52:18,057 DEBUG -- << Server: AmazonS3 
+2016-08-17 10:52:18,057 DEBUG -- Connection can be kept alive indefinitely 
+2016-08-17 10:52:18,080 DEBUG -- Sanitizing XML document destined for handler class com.amazonaws.services.s3.model.transform.XmlResponsesSaxParser$ListBucketHandler 
+2016-08-17 10:52:18,081 DEBUG --  << "212[\r][\n]" 
+2016-08-17 10:52:18,082 DEBUG --  << "<?xml version="1.0" encoding="UTF-8"?>[\n]" 
+2016-08-17 10:52:18,082 DEBUG --  << "<ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>sercan-deneme</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>cloud.log</Key><LastModified>2016-08-12T14:21:21.000Z</LastModified><ETag>&quot;b325e512350e0a2151332c0a46448fc5&quot;</ETag><Size>18</Size><Owner><ID>858276700c8b9dfc1bd07e61a0d432a8c1053f4e2c252f94c4746ae2078248dd</ID></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>" 
+2016-08-17 10:52:18,082 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,082 DEBUG --  << "0[\r][\n]" 
+2016-08-17 10:52:18,082 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,082 DEBUG -- Connection [id: 2][route: {s}->https://sercan-deneme.s3.eu-central-1.amazonaws.com] can be kept alive indefinitely 
+2016-08-17 10:52:18,082 DEBUG -- Connection released: [id: 2][route: {s}->https://sercan-deneme.s3.eu-central-1.amazonaws.com][total kept alive: 2; route allocated: 1 of 50; total allocated: 2 of 50] 
+2016-08-17 10:52:18,083 DEBUG -- Parsing XML response document with handler: class com.amazonaws.services.s3.model.transform.XmlResponsesSaxParser$ListBucketHandler 
+2016-08-17 10:52:18,084 DEBUG -- Examining listing for bucket: sercan-deneme 
+2016-08-17 10:52:18,091 DEBUG -- Received successful response: 200, AWS Request ID: 9AB9A7EBEF1F0518 
+2016-08-17 10:52:18,104 INFO  -- Verticle Deployed 56d9de4b-c7c4-4e79-8da4-1e098236b9ce 
+2016-08-17 10:52:18,126 DEBUG -- Sending Request: GET https://sercan-deneme.s3.amazonaws.com /cloud.log Headers: (User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101, Content-Type: application/x-www-form-urlencoded; charset=utf-8, )  
+2016-08-17 10:52:18,127 DEBUG -- Calculated string to sign:
+"GET
+
+application/x-www-form-urlencoded; charset=utf-8
+Wed, 17 Aug 2016 07:52:18 GMT
+/sercan-deneme/cloud.log" 
+2016-08-17 10:52:18,128 DEBUG -- Connection request: [route: {s}->https://sercan-deneme.s3.amazonaws.com][total kept alive: 2; route allocated: 0 of 50; total allocated: 2 of 50] 
+2016-08-17 10:52:18,128 DEBUG -- Connection leased: [id: 3][route: {s}->https://sercan-deneme.s3.amazonaws.com][total kept alive: 2; route allocated: 1 of 50; total allocated: 3 of 50] 
+2016-08-17 10:52:18,129 DEBUG -- socket.getSupportedProtocols(): [SSLv2Hello, SSLv3, TLSv1, TLSv1.1, TLSv1.2], socket.getEnabledProtocols(): [TLSv1, TLSv1.1, TLSv1.2] 
+2016-08-17 10:52:18,129 DEBUG -- TLS protocol enabled for SSL handshake: [TLSv1.2, TLSv1.1, TLSv1] 
+2016-08-17 10:52:18,129 DEBUG -- Connecting to sercan-deneme.s3.amazonaws.com:443 
+2016-08-17 10:52:18,140 DEBUG -- -Dio.netty.allocator.numHeapArenas: 10 
+2016-08-17 10:52:18,140 DEBUG -- -Dio.netty.allocator.numDirectArenas: 10 
+2016-08-17 10:52:18,140 DEBUG -- -Dio.netty.allocator.pageSize: 8192 
+2016-08-17 10:52:18,140 DEBUG -- -Dio.netty.allocator.maxOrder: 11 
+2016-08-17 10:52:18,141 DEBUG -- -Dio.netty.allocator.chunkSize: 16777216 
+2016-08-17 10:52:18,141 DEBUG -- -Dio.netty.allocator.tinyCacheSize: 512 
+2016-08-17 10:52:18,141 DEBUG -- -Dio.netty.allocator.smallCacheSize: 256 
+2016-08-17 10:52:18,141 DEBUG -- -Dio.netty.allocator.normalCacheSize: 64 
+2016-08-17 10:52:18,141 DEBUG -- -Dio.netty.allocator.maxCachedBufferCapacity: 32768 
+2016-08-17 10:52:18,141 DEBUG -- -Dio.netty.allocator.cacheTrimInterval: 8192 
+2016-08-17 10:52:18,149 DEBUG -- -Dio.netty.allocator.type: pooled 
+2016-08-17 10:52:18,149 DEBUG -- -Dio.netty.threadLocalDirectBufferSize: 65536 
+2016-08-17 10:52:18,149 DEBUG -- -Dio.netty.maxThreadLocalCharBufferSize: 16384 
+2016-08-17 10:52:18,152 DEBUG -- -Dio.netty.recycler.maxCapacity: 262144 
+2016-08-17 10:52:18,152 DEBUG -- -Dio.netty.recycler.linkCapacity: 16 
+2016-08-17 10:52:18,162 DEBUG -- -Dio.netty.buffer.bytebuf.checkAccessible: true 
+2016-08-17 10:52:18,388 DEBUG -- CookieSpec selected: best-match 
+2016-08-17 10:52:18,388 DEBUG -- Auth cache not set in the context 
+2016-08-17 10:52:18,389 DEBUG -- Proxy auth state: UNCHALLENGED 
+2016-08-17 10:52:18,389 DEBUG -- Attempt 1 to execute request 
+2016-08-17 10:52:18,389 DEBUG -- Sending request: GET /cloud.log HTTP/1.1 
+2016-08-17 10:52:18,389 DEBUG --  >> "GET /cloud.log HTTP/1.1[\r][\n]" 
+2016-08-17 10:52:18,389 DEBUG --  >> "Host: sercan-deneme.s3.amazonaws.com[\r][\n]" 
+2016-08-17 10:52:18,389 DEBUG --  >> "Authorization: AWS AKIAJSRJ5I6PMJTPERPQ:RI47RJluqKWi6vRq8gsj+GsDW1A=[\r][\n]" 
+2016-08-17 10:52:18,389 DEBUG --  >> "User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101[\r][\n]" 
+2016-08-17 10:52:18,389 DEBUG --  >> "Date: Wed, 17 Aug 2016 07:52:18 GMT[\r][\n]" 
+2016-08-17 10:52:18,389 DEBUG --  >> "Content-Type: application/x-www-form-urlencoded; charset=utf-8[\r][\n]" 
+2016-08-17 10:52:18,389 DEBUG --  >> "Connection: Keep-Alive[\r][\n]" 
+2016-08-17 10:52:18,389 DEBUG --  >> "[\r][\n]" 
+2016-08-17 10:52:18,389 DEBUG -- >> GET /cloud.log HTTP/1.1 
+2016-08-17 10:52:18,390 DEBUG -- >> Host: sercan-deneme.s3.amazonaws.com 
+2016-08-17 10:52:18,390 DEBUG -- >> Authorization: AWS AKIAJSRJ5I6PMJTPERPQ:RI47RJluqKWi6vRq8gsj+GsDW1A= 
+2016-08-17 10:52:18,390 DEBUG -- >> User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101 
+2016-08-17 10:52:18,390 DEBUG -- >> Date: Wed, 17 Aug 2016 07:52:18 GMT 
+2016-08-17 10:52:18,390 DEBUG -- >> Content-Type: application/x-www-form-urlencoded; charset=utf-8 
+2016-08-17 10:52:18,390 DEBUG -- >> Connection: Keep-Alive 
+2016-08-17 10:52:18,447 DEBUG --  << "HTTP/1.1 400 Bad Request[\r][\n]" 
+2016-08-17 10:52:18,447 DEBUG --  << "x-amz-request-id: EE758D02EBC1F97D[\r][\n]" 
+2016-08-17 10:52:18,447 DEBUG --  << "x-amz-id-2: 1KR/qu/g23He1gfjJxE5RhG4qm0L3/ahHTz5joiUX63Bvp7PZETkNpjrMyX59pohzjeldhjCbrM=[\r][\n]" 
+2016-08-17 10:52:18,447 DEBUG --  << "x-amz-region: eu-central-1[\r][\n]" 
+2016-08-17 10:52:18,447 DEBUG --  << "Content-Type: application/xml[\r][\n]" 
+2016-08-17 10:52:18,447 DEBUG --  << "Transfer-Encoding: chunked[\r][\n]" 
+2016-08-17 10:52:18,447 DEBUG --  << "Date: Wed, 17 Aug 2016 07:52:24 GMT[\r][\n]" 
+2016-08-17 10:52:18,447 DEBUG --  << "Connection: close[\r][\n]" 
+2016-08-17 10:52:18,447 DEBUG --  << "Server: AmazonS3[\r][\n]" 
+2016-08-17 10:52:18,447 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,448 DEBUG -- Receiving response: HTTP/1.1 400 Bad Request 
+2016-08-17 10:52:18,448 DEBUG -- << HTTP/1.1 400 Bad Request 
+2016-08-17 10:52:18,448 DEBUG -- << x-amz-request-id: EE758D02EBC1F97D 
+2016-08-17 10:52:18,448 DEBUG -- << x-amz-id-2: 1KR/qu/g23He1gfjJxE5RhG4qm0L3/ahHTz5joiUX63Bvp7PZETkNpjrMyX59pohzjeldhjCbrM= 
+2016-08-17 10:52:18,448 DEBUG -- << x-amz-region: eu-central-1 
+2016-08-17 10:52:18,448 DEBUG -- << Content-Type: application/xml 
+2016-08-17 10:52:18,448 DEBUG -- << Transfer-Encoding: chunked 
+2016-08-17 10:52:18,448 DEBUG -- << Date: Wed, 17 Aug 2016 07:52:24 GMT 
+2016-08-17 10:52:18,448 DEBUG -- << Connection: close 
+2016-08-17 10:52:18,448 DEBUG -- << Server: AmazonS3 
+2016-08-17 10:52:18,449 DEBUG --  << "144[\r][\n]" 
+2016-08-17 10:52:18,449 DEBUG --  << "<?xml version="1.0" encoding="UTF-8"?>[\n]" 
+2016-08-17 10:52:18,450 DEBUG --  << "<Error><Code>InvalidRequest</Code><Message>The authorization mechanism you have provided is not supported. Please use AWS4-HMAC-SHA256.</Message><RequestId>EE758D02EBC1F97D</RequestId><HostId>1KR/qu/g23He1gfjJxE5RhG4qm0L3/ahHTz5joiUX63Bvp7PZETkNpjrMyX59pohzjeldhjCbrM=</HostId></Error>" 
+2016-08-17 10:52:18,450 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,450 DEBUG --  << "0[\r][\n]" 
+2016-08-17 10:52:18,450 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,450 DEBUG -- Connection 0.0.0.0:39032<->54.231.193.36:443 closed 
+2016-08-17 10:52:18,451 DEBUG -- Connection released: [id: 3][route: {s}->https://sercan-deneme.s3.amazonaws.com][total kept alive: 2; route allocated: 0 of 50; total allocated: 2 of 50] 
+2016-08-17 10:52:18,451 DEBUG -- Received error response: com.amazonaws.services.s3.model.AmazonS3Exception: The authorization mechanism you have provided is not supported. Please use AWS4-HMAC-SHA256. (Service: null; Status Code: 400; Error Code: InvalidRequest; Request ID: EE758D02EBC1F97D), S3 Extended Request ID: 1KR/qu/g23He1gfjJxE5RhG4qm0L3/ahHTz5joiUX63Bvp7PZETkNpjrMyX59pohzjeldhjCbrM= 
+2016-08-17 10:52:18,451 WARN  -- Attempting to re-send the request to sercan-deneme.s3-external-1.amazonaws.com with AWS V4 authentication. To avoid this warning in the future, please use region-specific endpoint to access buckets located in regions that require V4 signing. 
+2016-08-17 10:52:18,452 DEBUG -- Sending Request: GET https://sercan-deneme.s3-external-1.amazonaws.com /cloud.log Headers: (User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101, Content-Type: application/x-www-form-urlencoded; charset=utf-8, )  
+2016-08-17 10:52:18,452 DEBUG -- AWS4 Canonical Request: '"GET
+/cloud.log
+
+content-type:application/x-www-form-urlencoded; charset=utf-8
+host:sercan-deneme.s3-external-1.amazonaws.com
+user-agent:aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20160817T075218Z
+
+content-type;host;user-agent;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" 
+2016-08-17 10:52:18,452 DEBUG -- AWS4 String to Sign: '"AWS4-HMAC-SHA256
+20160817T075218Z
+20160817/us-east-1/s3/aws4_request
+726012fc8e4e9c62a98d445138b18b506db9b5b6a7614a4f67d1372a9ed0ad2e" 
+2016-08-17 10:52:18,452 DEBUG -- Retriable error detected, will retry in 0ms, attempt number: 0 
+2016-08-17 10:52:18,453 DEBUG -- Connection request: [route: {s}->https://sercan-deneme.s3-external-1.amazonaws.com][total kept alive: 2; route allocated: 1 of 50; total allocated: 2 of 50] 
+2016-08-17 10:52:18,453 DEBUG -- Connection leased: [id: 1][route: {s}->https://sercan-deneme.s3-external-1.amazonaws.com][total kept alive: 1; route allocated: 1 of 50; total allocated: 2 of 50] 
+2016-08-17 10:52:18,453 DEBUG -- Stale connection check 
+2016-08-17 10:52:18,455 DEBUG -- CookieSpec selected: best-match 
+2016-08-17 10:52:18,455 DEBUG -- Auth cache not set in the context 
+2016-08-17 10:52:18,455 DEBUG -- Proxy auth state: UNCHALLENGED 
+2016-08-17 10:52:18,455 DEBUG -- Attempt 1 to execute request 
+2016-08-17 10:52:18,456 DEBUG -- Sending request: GET /cloud.log HTTP/1.1 
+2016-08-17 10:52:18,456 DEBUG --  >> "GET /cloud.log HTTP/1.1[\r][\n]" 
+2016-08-17 10:52:18,456 DEBUG --  >> "Host: sercan-deneme.s3-external-1.amazonaws.com[\r][\n]" 
+2016-08-17 10:52:18,456 DEBUG --  >> "x-amz-content-sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855[\r][\n]" 
+2016-08-17 10:52:18,456 DEBUG --  >> "Authorization: AWS4-HMAC-SHA256 Credential=AKIAJSRJ5I6PMJTPERPQ/20160817/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date, Signature=88053deb026d2e7ed226e38939bfae4a8cdb9f32e661ce351270915604190117[\r][\n]" 
+2016-08-17 10:52:18,456 DEBUG --  >> "X-Amz-Date: 20160817T075218Z[\r][\n]" 
+2016-08-17 10:52:18,456 DEBUG --  >> "User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101[\r][\n]" 
+2016-08-17 10:52:18,456 DEBUG --  >> "Content-Type: application/x-www-form-urlencoded; charset=utf-8[\r][\n]" 
+2016-08-17 10:52:18,456 DEBUG --  >> "Connection: Keep-Alive[\r][\n]" 
+2016-08-17 10:52:18,456 DEBUG --  >> "[\r][\n]" 
+2016-08-17 10:52:18,457 DEBUG -- >> GET /cloud.log HTTP/1.1 
+2016-08-17 10:52:18,457 DEBUG -- >> Host: sercan-deneme.s3-external-1.amazonaws.com 
+2016-08-17 10:52:18,457 DEBUG -- >> x-amz-content-sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 
+2016-08-17 10:52:18,457 DEBUG -- >> Authorization: AWS4-HMAC-SHA256 Credential=AKIAJSRJ5I6PMJTPERPQ/20160817/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date, Signature=88053deb026d2e7ed226e38939bfae4a8cdb9f32e661ce351270915604190117 
+2016-08-17 10:52:18,457 DEBUG -- >> X-Amz-Date: 20160817T075218Z 
+2016-08-17 10:52:18,457 DEBUG -- >> User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101 
+2016-08-17 10:52:18,457 DEBUG -- >> Content-Type: application/x-www-form-urlencoded; charset=utf-8 
+2016-08-17 10:52:18,457 DEBUG -- >> Connection: Keep-Alive 
+2016-08-17 10:52:18,596 DEBUG --  << "HTTP/1.1 307 Temporary Redirect[\r][\n]" 
+2016-08-17 10:52:18,596 DEBUG --  << "x-amz-request-id: D5ACAFB6103A8AE3[\r][\n]" 
+2016-08-17 10:52:18,596 DEBUG --  << "x-amz-id-2: YFkkSfA1DYQnZQ8aqBCLECjngBHiOgwZcWOUScKWMQGJ5ZCS1l8O0kcv0c13MdpK[\r][\n]" 
+2016-08-17 10:52:18,596 DEBUG --  << "Location: https://sercan-deneme.s3.eu-central-1.amazonaws.com/cloud.log[\r][\n]" 
+2016-08-17 10:52:18,596 DEBUG --  << "Content-Type: application/xml[\r][\n]" 
+2016-08-17 10:52:18,596 DEBUG --  << "Transfer-Encoding: chunked[\r][\n]" 
+2016-08-17 10:52:18,597 DEBUG --  << "Date: Wed, 17 Aug 2016 07:52:24 GMT[\r][\n]" 
+2016-08-17 10:52:18,597 DEBUG --  << "Server: AmazonS3[\r][\n]" 
+2016-08-17 10:52:18,597 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,597 DEBUG -- Receiving response: HTTP/1.1 307 Temporary Redirect 
+2016-08-17 10:52:18,597 DEBUG -- << HTTP/1.1 307 Temporary Redirect 
+2016-08-17 10:52:18,597 DEBUG -- << x-amz-request-id: D5ACAFB6103A8AE3 
+2016-08-17 10:52:18,597 DEBUG -- << x-amz-id-2: YFkkSfA1DYQnZQ8aqBCLECjngBHiOgwZcWOUScKWMQGJ5ZCS1l8O0kcv0c13MdpK 
+2016-08-17 10:52:18,597 DEBUG -- << Location: https://sercan-deneme.s3.eu-central-1.amazonaws.com/cloud.log 
+2016-08-17 10:52:18,597 DEBUG -- << Content-Type: application/xml 
+2016-08-17 10:52:18,597 DEBUG -- << Transfer-Encoding: chunked 
+2016-08-17 10:52:18,597 DEBUG -- << Date: Wed, 17 Aug 2016 07:52:24 GMT 
+2016-08-17 10:52:18,597 DEBUG -- << Server: AmazonS3 
+2016-08-17 10:52:18,597 DEBUG -- Connection can be kept alive indefinitely 
+2016-08-17 10:52:18,597 DEBUG -- Redirecting to: https://sercan-deneme.s3.eu-central-1.amazonaws.com/cloud.log 
+2016-08-17 10:52:18,598 DEBUG --  << "1c0[\r][\n]" 
+2016-08-17 10:52:18,598 DEBUG --  << "<?xml version="1.0" encoding="UTF-8"?>[\n]" 
+2016-08-17 10:52:18,599 DEBUG --  << "<Error><Code>TemporaryRedirect</Code><Message>Please re-send this request to the specified temporary endpoint. Continue to use the original request endpoint for future requests.</Message><Bucket>sercan-deneme</Bucket><Endpoint>sercan-deneme.s3.eu-central-1.amazonaws.com</Endpoint><RequestId>D5ACAFB6103A8AE3</RequestId><HostId>YFkkSfA1DYQnZQ8aqBCLECjngBHiOgwZcWOUScKWMQGJ5ZCS1l8O0kcv0c13MdpK</HostId></Error>" 
+2016-08-17 10:52:18,599 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,599 DEBUG --  << "0[\r][\n]" 
+2016-08-17 10:52:18,599 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,599 DEBUG -- Connection [id: 1][route: {s}->https://sercan-deneme.s3-external-1.amazonaws.com] can be kept alive indefinitely 
+2016-08-17 10:52:18,599 DEBUG -- Connection released: [id: 1][route: {s}->https://sercan-deneme.s3-external-1.amazonaws.com][total kept alive: 2; route allocated: 1 of 50; total allocated: 2 of 50] 
+2016-08-17 10:52:18,599 DEBUG -- Sending Request: GET https://sercan-deneme.s3.eu-central-1.amazonaws.com /cloud.log Headers: (User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101, Content-Type: application/x-www-form-urlencoded; charset=utf-8, )  
+2016-08-17 10:52:18,600 DEBUG -- AWS4 Canonical Request: '"GET
+/cloud.log
+
+content-type:application/x-www-form-urlencoded; charset=utf-8
+host:sercan-deneme.s3.eu-central-1.amazonaws.com
+user-agent:aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101
+x-amz-content-sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+x-amz-date:20160817T075218Z
+
+content-type;host;user-agent;x-amz-content-sha256;x-amz-date
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" 
+2016-08-17 10:52:18,600 DEBUG -- AWS4 String to Sign: '"AWS4-HMAC-SHA256
+20160817T075218Z
+20160817/eu-central-1/s3/aws4_request
+c76f9420ba1ebe23f65672349a3a5d3569cbb4a5ef9dcd18c32109151547d9c9" 
+2016-08-17 10:52:18,602 DEBUG -- Connection request: [route: {s}->https://sercan-deneme.s3.eu-central-1.amazonaws.com][total kept alive: 2; route allocated: 1 of 50; total allocated: 2 of 50] 
+2016-08-17 10:52:18,602 DEBUG -- Connection leased: [id: 2][route: {s}->https://sercan-deneme.s3.eu-central-1.amazonaws.com][total kept alive: 1; route allocated: 1 of 50; total allocated: 2 of 50] 
+2016-08-17 10:52:18,602 DEBUG -- Stale connection check 
+2016-08-17 10:52:18,604 DEBUG -- CookieSpec selected: best-match 
+2016-08-17 10:52:18,604 DEBUG -- Auth cache not set in the context 
+2016-08-17 10:52:18,604 DEBUG -- Proxy auth state: UNCHALLENGED 
+2016-08-17 10:52:18,604 DEBUG -- Attempt 1 to execute request 
+2016-08-17 10:52:18,604 DEBUG -- Sending request: GET /cloud.log HTTP/1.1 
+2016-08-17 10:52:18,604 DEBUG --  >> "GET /cloud.log HTTP/1.1[\r][\n]" 
+2016-08-17 10:52:18,605 DEBUG --  >> "Host: sercan-deneme.s3.eu-central-1.amazonaws.com[\r][\n]" 
+2016-08-17 10:52:18,605 DEBUG --  >> "x-amz-content-sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855[\r][\n]" 
+2016-08-17 10:52:18,605 DEBUG --  >> "Authorization: AWS4-HMAC-SHA256 Credential=AKIAJSRJ5I6PMJTPERPQ/20160817/eu-central-1/s3/aws4_request, SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date, Signature=3db6a67008def8fa7015f7358bbc72f803187b5115577893bf0bb90a8ed65e7b[\r][\n]" 
+2016-08-17 10:52:18,605 DEBUG --  >> "X-Amz-Date: 20160817T075218Z[\r][\n]" 
+2016-08-17 10:52:18,605 DEBUG --  >> "User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101[\r][\n]" 
+2016-08-17 10:52:18,605 DEBUG --  >> "Content-Type: application/x-www-form-urlencoded; charset=utf-8[\r][\n]" 
+2016-08-17 10:52:18,605 DEBUG --  >> "Connection: Keep-Alive[\r][\n]" 
+2016-08-17 10:52:18,605 DEBUG --  >> "[\r][\n]" 
+2016-08-17 10:52:18,605 DEBUG -- >> GET /cloud.log HTTP/1.1 
+2016-08-17 10:52:18,605 DEBUG -- >> Host: sercan-deneme.s3.eu-central-1.amazonaws.com 
+2016-08-17 10:52:18,606 DEBUG -- >> x-amz-content-sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 
+2016-08-17 10:52:18,606 DEBUG -- >> Authorization: AWS4-HMAC-SHA256 Credential=AKIAJSRJ5I6PMJTPERPQ/20160817/eu-central-1/s3/aws4_request, SignedHeaders=content-type;host;user-agent;x-amz-content-sha256;x-amz-date, Signature=3db6a67008def8fa7015f7358bbc72f803187b5115577893bf0bb90a8ed65e7b 
+2016-08-17 10:52:18,606 DEBUG -- >> X-Amz-Date: 20160817T075218Z 
+2016-08-17 10:52:18,606 DEBUG -- >> User-Agent: aws-sdk-java/1.9.6 Linux/4.4.0-31-generic Java_HotSpot(TM)_64-Bit_Server_VM/25.101-b13/1.8.0_101 
+2016-08-17 10:52:18,606 DEBUG -- >> Content-Type: application/x-www-form-urlencoded; charset=utf-8 
+2016-08-17 10:52:18,606 DEBUG -- >> Connection: Keep-Alive 
+2016-08-17 10:52:18,713 DEBUG --  << "HTTP/1.1 200 OK[\r][\n]" 
+2016-08-17 10:52:18,714 DEBUG --  << "x-amz-id-2: 6/yLj3Bp2s4yde1HYwAF2HSgZXCN9JXFZyBFLiPMNBjOJ0ON1uzDfVPEgQQwAN0v+S7EbVWgEJQ=[\r][\n]" 
+2016-08-17 10:52:18,714 DEBUG --  << "x-amz-request-id: 183182C417B38339[\r][\n]" 
+2016-08-17 10:52:18,714 DEBUG --  << "Date: Wed, 17 Aug 2016 07:52:26 GMT[\r][\n]" 
+2016-08-17 10:52:18,714 DEBUG --  << "Last-Modified: Fri, 12 Aug 2016 14:21:21 GMT[\r][\n]" 
+2016-08-17 10:52:18,714 DEBUG --  << "ETag: "b325e512350e0a2151332c0a46448fc5"[\r][\n]" 
+2016-08-17 10:52:18,714 DEBUG --  << "Accept-Ranges: bytes[\r][\n]" 
+2016-08-17 10:52:18,714 DEBUG --  << "Content-Type: application/octet-stream[\r][\n]" 
+2016-08-17 10:52:18,715 DEBUG --  << "Content-Length: 18[\r][\n]" 
+2016-08-17 10:52:18,715 DEBUG --  << "Server: AmazonS3[\r][\n]" 
+2016-08-17 10:52:18,715 DEBUG --  << "[\r][\n]" 
+2016-08-17 10:52:18,715 DEBUG -- Receiving response: HTTP/1.1 200 OK 
+2016-08-17 10:52:18,715 DEBUG -- << HTTP/1.1 200 OK 
+2016-08-17 10:52:18,715 DEBUG -- << x-amz-id-2: 6/yLj3Bp2s4yde1HYwAF2HSgZXCN9JXFZyBFLiPMNBjOJ0ON1uzDfVPEgQQwAN0v+S7EbVWgEJQ= 
+2016-08-17 10:52:18,715 DEBUG -- << x-amz-request-id: 183182C417B38339 
+2016-08-17 10:52:18,715 DEBUG -- << Date: Wed, 17 Aug 2016 07:52:26 GMT 
+2016-08-17 10:52:18,715 DEBUG -- << Last-Modified: Fri, 12 Aug 2016 14:21:21 GMT 
+2016-08-17 10:52:18,715 DEBUG -- << ETag: "b325e512350e0a2151332c0a46448fc5" 
+2016-08-17 10:52:18,715 DEBUG -- << Accept-Ranges: bytes 
+2016-08-17 10:52:18,715 DEBUG -- << Content-Type: application/octet-stream 
+2016-08-17 10:52:18,715 DEBUG -- << Content-Length: 18 
+2016-08-17 10:52:18,715 DEBUG -- << Server: AmazonS3 
+2016-08-17 10:52:18,717 DEBUG -- Connection can be kept alive indefinitely 
+2016-08-17 10:52:18,734 DEBUG -- Received successful response: 200, AWS Request ID: 183182C417B38339 
+2016-08-17 10:52:18,735 DEBUG --  << "x[\n]" 
+2016-08-17 10:52:18,735 DEBUG --  << "y[\n]" 
+2016-08-17 10:52:18,735 DEBUG --  << "z[\n]" 
+2016-08-17 10:52:18,735 DEBUG --  << "q[\n]" 
+2016-08-17 10:52:18,735 DEBUG --  << "w[\n]" 
+2016-08-17 10:52:18,735 DEBUG --  << "e[\n]" 
+2016-08-17 10:52:18,735 DEBUG --  << "r[\n]" 
+2016-08-17 10:52:18,735 DEBUG --  << "t[\n]" 
+2016-08-17 10:52:18,735 DEBUG --  << "y[\n]" 
+2016-08-17 10:52:18,735 DEBUG -- Connection [id: 2][route: {s}->https://sercan-deneme.s3.eu-central-1.amazonaws.com] can be kept alive indefinitely 
+2016-08-17 10:52:18,735 DEBUG -- Connection released: [id: 2][route: {s}->https://sercan-deneme.s3.eu-central-1.amazonaws.com][total kept alive: 2; route allocated: 1 of 50; total allocated: 2 of 50] 
+2016-08-21 12:10:51,473 DEBUG -- Couldn't find template in cache for "$conf"("en_US", UTF-8, parsed); will try to load it. 
+2016-08-21 12:10:51,475 DEBUG -- TemplateLoader.findTemplateSource("$conf_en_US"): Not found 
+2016-08-21 12:10:51,475 DEBUG -- TemplateLoader.findTemplateSource("$conf_en"): Not found 
+2016-08-21 12:10:51,475 DEBUG -- TemplateLoader.findTemplateSource("$conf"): Not found 
+2016-08-21 12:10:51,477 ERROR -- Config file doesn't exist {} 
+freemarker.template.TemplateNotFoundException: Template not found for name "$conf".
+The name was interpreted by this TemplateLoader: FileTemplateLoader(baseDir="/home/sercan/git/log-collector/app/conf", canonicalBasePath="/home/sercan/git/log-collector/app/conf/").
+	at freemarker.template.Configuration.getTemplate(Configuration.java:1833)
+	at freemarker.template.Configuration.getTemplate(Configuration.java:1646)
+	at com.foreks.vertx.launcher.FreemarkerHelper.processTemplate(FreemarkerHelper.java:22)
+	at com.foreks.vertx.launcher.VertxConfigLauncher.readConf(VertxConfigLauncher.java:38)
+	at com.foreks.vertx.launcher.VertxConfigLauncher.readConf(VertxConfigLauncher.java:33)
+	at com.foreks.vertx.launcher.VertxConfigLauncher.main(VertxConfigLauncher.java:119)

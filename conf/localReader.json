@@ -1,0 +1,25 @@
+{
+  "verticles": {
+    "io.andromeda.logcollector.LocalFileReaderVerticle": {
+      "deploymentOptions": {
+        "config": {
+          "path": "/data"
+        }
+      },
+      "instances": 1,
+      "ha": true,
+      "worker": false,
+      "multiThreaded": false
+    }
+  },
+  "vertxOptions": {
+    "clusterHost": "${nodeip}",
+    "clustered": ${clustered},
+    "clusterPingInterval": 1000,
+    "clusterPingReplyInterval": 1000,
+    "quorumSize": 1,
+    "eventLoopPoolSize": 4,
+    "haEnabled": true,
+    "workerPoolSize": 4
+  }
+}

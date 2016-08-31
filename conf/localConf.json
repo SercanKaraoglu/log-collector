@@ -1,0 +1,49 @@
+{
+  "verticles": {
+    "io.andromeda.logconsumer.ConsoleWriter": {
+      "deploymentOptions": {
+        "config": {
+          "files":[${files}]
+        }
+      },
+      "instances": 1,
+      "ha": false,
+      "worker": false,
+      "multiThreaded": false
+    },
+    "io.andromeda.logcollector.LocalFileReaderVerticle": {
+      "deploymentOptions": {
+        "config": {
+          "path": "data"
+        }
+      },
+      "instances": 1,
+      "ha": true,
+      "worker": false,
+      "multiThreaded": false
+    },
+    "io.andromeda.logcollector.S3FileReaderVerticle": {
+      "deploymentOptions": {
+        "config": {
+          "path": "${path}",
+          "profile": "${profile}",
+          "region": "${region}"
+        }
+      },
+      "instances": 1,
+      "ha": true,
+      "worker": false,
+      "multiThreaded": false
+    }
+  },
+  "vertxOptions": {
+    "clusterHost": "${nodeip}",
+    "clustered": ${clustered},
+    "clusterPingInterval": 1000,
+    "clusterPingReplyInterval": 1000,
+    "quorumSize": 1,
+    "eventLoopPoolSize": 4,
+    "haEnabled": false,
+    "workerPoolSize": 4
+  }
+}

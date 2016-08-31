@@ -1,0 +1,26 @@
+{
+  "verticles": {
+    "io.andromeda.logconsumer.MongoWriter": {
+      "deploymentOptions": {
+        "config": {
+          "files":[${files}],
+          ${mongoConfig}
+        }
+      },
+      "instances": 1,
+      "ha": false,
+      "worker": false,
+      "multiThreaded": false
+    }
+  },
+  "vertxOptions": {
+    "clusterHost": "${nodeip}",
+    "clustered": ${clustered},
+    "clusterPingInterval": 1000,
+    "clusterPingReplyInterval": 1000,
+    "quorumSize": 1,
+    "eventLoopPoolSize": 4,
+    "haEnabled": false,
+    "workerPoolSize": 4
+  }
+}

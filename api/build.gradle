@@ -1,0 +1,86 @@
+plugins {
+    id "maven"
+}
+
+dependencies {
+    compile 'io.vertx:vertx-service-proxy:3.3.2'
+    compile 'io.vertx:vertx-codegen:3.3.2'
+    compile 'io.vertx:vertx-rx-java:3.3.2'
+    compile 'io.vertx:vertx-service-discovery:3.3.2'
+    
+    compile 'com.amazonaws:aws-java-sdk:1.9.6'
+    runtime group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.5'
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.5'
+    compile(group: 'log4j', name: 'log4j', version: '1.2.17') {
+        exclude(module: 'mail')
+        exclude(module: 'jms')
+        exclude(module: 'jmxtools')
+        exclude(module: 'jmxri')
+    }
+}
+
+task generateServiceProxy(type: JavaCompile, description: 'Generates EBServiceProxies') {
+    source = sourceSets.main.java
+    classpath = configurations.compile
+    destinationDir = file("src/main/java")
+    options.compilerArgs = ["-proc:only",
+                            "-processor", "io.vertx.codegen.CodeGenProcessor",
+                            "-AoutputDirectory=$destinationDir"]
+}
+
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: nexusRelease) {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+            snapshotRepository(url: nexusSnapshot) {
+                authentication(userName: nexusUsername, password: nexusPassword);
+            }
+            pom.project {
+                name 'File Reader'
+                artifactId = 'file-reader'
+                description 'This project aims to serve log files from local path or S3 over Vert.x eventbus'
+                url 'https://github.com/SercanKaraoglu/log-collector.git'
+                scm {
+                    url 'https://github.com/SercanKaraoglu/log-collector'
+                    connection 'scm:git:git@github.com:SercanKaraoglu/log-collector.git'
+                    developerConnection 'scm:git:git@github.com:SercanKaraoglu/log-collector.git'
+                }
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/license/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'SercanKaraoglu'
+                        name 'Sercan Karaoglu'
+                        email 'sercan.karaoglu@foreks.com'
+                    }
+                }
+                
+            }
+        }
+    }
+}

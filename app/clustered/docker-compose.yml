@@ -1,0 +1,51 @@
+version: '2'
+services:
+  zookeeper:
+    image: sercankaraoglu/zookeeper
+    volumes:
+      - ${PWD}/zoo.cfg:/opt/app/zookeeper/conf/zoo.cfg
+    ports:
+      - "2181:2181"
+  local-log-collector-1:
+    image: io.andromeda/log-collector
+    volumes:
+      - ${PWD}/../../data/first:/data
+    links:
+      - zookeeper:zookeeper
+    environment:
+      - 'clustered=true'
+      - 'conf=localReader.json'
+  local-log-collector-2:
+      image: io.andromeda/log-collector
+      volumes:
+        - ${PWD}/../../data/second:/data
+      links:
+        - zookeeper:zookeeper
+      environment:
+        - 'clustered=true'
+        - 'conf=localReader.json'
+  s3-log-collector:
+        image: io.andromeda/log-collector
+        volumes:
+          - ~/.aws:/root/.aws
+        links:
+          - zookeeper:zookeeper
+        environment:
+          - 'clustered=true'
+          - 'conf=s3Reader.json'
+          - 'profile=s3'
+          - 'region=us-east-1'
+          - 'path=sercan-deneme'
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+  console-writer:
+      image: io.andromeda/log-collector
+      links:
+        - zookeeper:zookeeper
+        - mongo:mongo
+      environment:
+        - 'clustered=true'
+        - 'conf=writerConf.json'
+        - 'files="first.log", "second.log", "cloud.log"'

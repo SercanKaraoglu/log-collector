@@ -1,0 +1,27 @@
+"mongoConfig": {
+"db_name": "logcollector",
+"host": "mongo",
+"port": 27017,
+"maxPoolSize": 50,
+"minPoolSize": 25,
+"maxIdleTimeMS": 300000,
+"maxLifeTimeMS": 3600000,
+"waitQueueMultiple": 1000000,
+"waitQueueTimeoutMS": 10000,
+"maintenanceFrequencyMS": 2000,
+"maintenanceInitialDelayMS": 500,
+"connectTimeoutMS": 300000,
+"socketTimeoutMS": 100000,
+"sendBufferSize": 8192,
+"receiveBufferSize": 8192,
+"keepAlive": true,
+"heartbeat.socket": {
+"connectTimeoutMS": 300000,
+"socketTimeoutMS": 100000,
+"sendBufferSize": 8192,
+"receiveBufferSize": 8192,
+"keepAlive": true
+},
+"heartbeatFrequencyMS": 1000,
+"minHeartbeatFrequencyMS": 500
+}

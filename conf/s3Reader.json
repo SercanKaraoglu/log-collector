@@ -1,0 +1,27 @@
+{
+  "verticles": {
+    "io.andromeda.logcollector.S3FileReaderVerticle": {
+      "deploymentOptions": {
+        "config": {
+          "profile": "${profile}",
+          "region": "${region}",
+          "path": "${path}"
+        }
+      },
+      "instances": 1,
+      "ha": true,
+      "worker": false,
+      "multiThreaded": false
+    }
+  },
+  "vertxOptions": {
+    "clusterHost": "${nodeip}",
+    "clustered": ${clustered},
+    "clusterPingInterval": 1000,
+    "clusterPingReplyInterval": 1000,
+    "quorumSize": 1,
+    "eventLoopPoolSize": 4,
+    "haEnabled": false,
+    "workerPoolSize": 4
+  }
+}

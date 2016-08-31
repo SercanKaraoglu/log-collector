@@ -1,0 +1,20 @@
+{
+
+  // Java verticle
+  "main":"com.foreks.backbone.tip.filereader.connector.MainVerticle",
+
+ 
+  // If your module is going to be registered in the Vert.x module registry you will also need the following
+  // mandatory fields
+  "description":"This module is a connector for Borsa Istanbul TIP Data Feed",
+  "licenses": ["Commercial"],
+  "author": "Sercan Karaoğlu",
+
+  // Optional fields
+  "developers": ["Sercan Karaoğlu", "Turgay Karaburk"],
+  "keywords": ["soupbintcp","nasdaq","Borsa Istanbul", "TIP", "connector"],
+  "homepage": "https://github.com/SercanKaraoglu",
+
+  "auto-redeploy": true
+  
+}

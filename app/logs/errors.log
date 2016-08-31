@@ -1,0 +1,9 @@
+2016-08-21 12:10:51,477 ERROR -- Config file doesn't exist {} 
+freemarker.template.TemplateNotFoundException: Template not found for name "$conf".
+The name was interpreted by this TemplateLoader: FileTemplateLoader(baseDir="/home/sercan/git/log-collector/app/conf", canonicalBasePath="/home/sercan/git/log-collector/app/conf/").
+	at freemarker.template.Configuration.getTemplate(Configuration.java:1833)
+	at freemarker.template.Configuration.getTemplate(Configuration.java:1646)
+	at com.foreks.vertx.launcher.FreemarkerHelper.processTemplate(FreemarkerHelper.java:22)
+	at com.foreks.vertx.launcher.VertxConfigLauncher.readConf(VertxConfigLauncher.java:38)
+	at com.foreks.vertx.launcher.VertxConfigLauncher.readConf(VertxConfigLauncher.java:33)
+	at com.foreks.vertx.launcher.VertxConfigLauncher.main(VertxConfigLauncher.java:119)
