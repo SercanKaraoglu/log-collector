@@ -23,6 +23,7 @@ public class MongoWriter extends AbstractVerticle {
 
 
     private Action1<Throwable> logError = it -> LOGGER.error("{}", it);
+    private Action1<String> logSuccess = it -> LOGGER.info("SUCCESS", it);
     private MongoClient mongo;
     String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
     private JsonObject counterQuery = new JsonObject().put("findAndModify", "counters")
@@ -44,7 +45,7 @@ public class MongoWriter extends AbstractVerticle {
                   .flatMap(path -> MessageConsumer.<String> create(vertx, rec -> rec.getName().equals(path)))
                   .flatMap(el -> nextId().map(_id -> new JsonObject().put("_id", _id).put("i", el)))
                   .flatMap(el -> mongo.saveObservable(today, el))
-                  .subscribe(System.out::println, logError);
+                  .subscribe(logSuccess, logError);
     }
 }
 
