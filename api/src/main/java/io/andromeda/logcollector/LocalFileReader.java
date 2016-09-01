@@ -68,6 +68,7 @@ public class LocalFileReader implements FileReader {
                                 buf.writeByte(b);
                             }
                         }
+                        buf.clear();
                     }
                 };
     }
