@@ -49,7 +49,7 @@ public class S3FileReader implements FileReader {
         }
         String bucket = paths[0];
         String key = IntStream.rangeClosed(1, paths.length-1).mapToObj(i -> paths[i]).collect(Collectors.joining("/"));
-        return Observable.defer(() -> Observable.create(subscriber -> {
+        return Observable.create(subscriber -> {
             S3ObjectInputStream s3ObjectInputStream = s3.getObject(new GetObjectRequest(bucket, key)).getObjectContent();
             BufferedReader reader = new BufferedReader(new InputStreamReader(s3ObjectInputStream));
             try {
@@ -64,6 +64,6 @@ public class S3FileReader implements FileReader {
             } catch (IOException e) {
                 subscriber.onError(e);
             }
-        }));
+        });
     }
 }
