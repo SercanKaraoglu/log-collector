@@ -12,21 +12,21 @@ import rx.functions.Action1;
 
 import java.util.function.Function;
 
-public abstract class ServicePublisher<MessageType> {
-    private static Logger LOGGER = LoggerFactory.getLogger(ServicePublisher.class);
+public abstract class ServiceProvider<MessageType> {
+    private static Logger LOGGER = LoggerFactory.getLogger(ServiceProvider.class);
     private Vertx _vertx;
     private ServiceDiscovery _serviceDiscovery;
     private Action1<Throwable> logError = it -> LOGGER.error("{}", it);
 
-    private ServicePublisher(Vertx vertx, ServiceDiscovery serviceDiscovery) {
+    private ServiceProvider(Vertx vertx, ServiceDiscovery serviceDiscovery) {
         this._vertx = vertx;
         this._serviceDiscovery = serviceDiscovery;
     }
 
-    public static <T> ServicePublisher<T> create(Vertx vertx, Function<String, Action1<T>> publish, Observable<T> source) {
-        return new ServicePublisher<T>(vertx, ServiceDiscovery.create(vertx)) {
+    public static <T> ServiceProvider<T> create(Vertx vertx, Function<String, Action1<T>> publish, Observable<T> source) {
+        return new ServiceProvider<T>(vertx, ServiceDiscovery.create(vertx)) {
             @Override
-            public Action1<T> publish(String address) {
+            public Action1<T> register(String address) {
                 return publish.apply(address);
             }
 
@@ -37,7 +37,7 @@ public abstract class ServicePublisher<MessageType> {
         };
     }
 
-    public abstract Action1<MessageType> publish(String address);
+    public abstract Action1<MessageType> register(String address);
 
     public abstract Observable<MessageType> source();
 
@@ -50,7 +50,7 @@ public abstract class ServicePublisher<MessageType> {
         }
     }
 
-    public void publish(Record rec) {
+    public void register(Record rec) {
         _vertx.eventBus()
                 .<JsonObject> consumer(ServiceDiscoveryOptions.DEFAULT_USAGE_ADDRESS)
                 .bodyStream()
@@ -59,7 +59,7 @@ public abstract class ServicePublisher<MessageType> {
                 .doOnNext(j -> System.out.println(j.encodePrettily()))
                 .filter(it -> "bind".equals(it.getString("type")))
                 .map(it -> it.getJsonObject("record").getJsonObject("location").getString("endpoint"))
-                .map(this::publish)
+                .map(this::register)
                 .subscribe(this::send, logError);
 
         _serviceDiscovery.publishObservable(rec).subscribe(res -> LOGGER.debug("published {}", res.toJson().encodePrettily()), logError);

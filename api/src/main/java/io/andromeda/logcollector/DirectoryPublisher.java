@@ -5,7 +5,7 @@
  */
 package io.andromeda.logcollector;
 
-import io.andromeda.servicediscovery.ServicePublisher;
+import io.andromeda.servicediscovery.ServiceProvider;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.servicediscovery.types.MessageSource;
 import org.slf4j.Logger;
@@ -26,8 +26,8 @@ public class DirectoryPublisher {
 
     public <T> void publish(String name, Function<String, Action1<T>> method) {
         this._server.listDirectory(name)
-                    .subscribe(path -> ServicePublisher.create(_vertx, method, this._server.source(name + "/" + path))
-                                                       .publish(MessageSource.createRecord(path, name + "/" + path, String.class.getName())),
+                    .subscribe(path -> ServiceProvider.create(_vertx, method, this._server.source(name + "/" + path))
+                                                      .register(MessageSource.createRecord(path, name + "/" + path, String.class.getName())),
                                error -> LOGGER.error("{}", error));
     }
 }
