@@ -23,7 +23,7 @@ subprojects {
     description = """Reads TIP log file and dissaminates it on eventbus"""
     
     group = 'io.andromeda'
-    version = '1.0'
+    version = '1.0.2-SNAPSHOT'
     
     sourceSets {
         main {
@@ -36,7 +36,13 @@ subprojects {
         }
     }
     repositories {
-        mavenCentral()
+        maven {
+            credentials {
+                username nexusUsername
+                password nexusPassword
+            }
+            url "http://dev.foreks.com/nexus/content/groups/public"
+        }
     }
     configurations.all {
         // Check for updates every build

@@ -51,8 +51,20 @@ applicationDefaultJvmArgs = ['-Dconf=conf/$conf',
                              '-Dfile.encoding=UTF-8']
 dependencies {
     compile project(':api')
-    compile "com.foreks:vertx-config-launcher:0.9.4"
-    compile 'io.vertx:vertx-mongo-client:3.3.2'
+    compile 'io.vertx:vertx-service-discovery:3.3.3'
+    compile "com.foreks:vertx-config-launcher:0.9.8"
+    compile "io.vertx:vertx-core:3.3.3"
+    compile 'io.vertx:vertx-rx-java:3.3.3'
+    compile 'io.vertx:vertx-service-proxy:3.3.3'
+    compile "io.vertx:vertx-hazelcast:3.3.3"
+    compile 'org.apache.logging.log4j:log4j:2.5'
+    compile 'org.apache.curator:curator-x-discovery:2.11.0'
+    compile 'org.apache.curator:curator-test:2.11.0'
+    compile 'com.hazelcast:hazelcast-zookeeper:3.6.1'
+    compile 'com.hazelcast:hazelcast-client:3.6.3'
+    compile 'io.vertx:vertx-mongo-client:3.3.3'
+    runtime 'org.slf4j:slf4j-log4j12:1.7.5'
+    compile 'org.slf4j:jcl-over-slf4j:1.7.5'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 

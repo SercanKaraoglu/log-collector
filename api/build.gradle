@@ -3,15 +3,14 @@ plugins {
 }
 
 dependencies {
-    compile 'io.vertx:vertx-service-proxy:3.3.2'
-    compile 'io.vertx:vertx-codegen:3.3.2'
-    compile 'io.vertx:vertx-rx-java:3.3.2'
-    compile 'io.vertx:vertx-service-discovery:3.3.2'
+    compileOnly 'io.vertx:vertx-codegen:3.3.3'
+    compileOnly 'io.vertx:vertx-rx-java:3.3.3'
+    compileOnly 'io.vertx:vertx-service-discovery:3.3.3'
     
     compile 'com.amazonaws:aws-java-sdk-s3:1.11.12'
     runtime group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.5'
-    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.5'
-    compile(group: 'log4j', name: 'log4j', version: '1.2.17') {
+    compileOnly group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.5'
+    compileOnly(group: 'log4j', name: 'log4j', version: '1.2.17') {
         exclude(module: 'mail')
         exclude(module: 'jms')
         exclude(module: 'jmxtools')
@@ -49,21 +48,21 @@ artifacts {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: nexusRelease) {
+            repository(url: "http://dev.foreks.com/nexus/content/repositories/releases") {
                 authentication(userName: nexusUsername, password: nexusPassword)
             }
-            snapshotRepository(url: nexusSnapshot) {
+            snapshotRepository(url: "http://dev.foreks.com/nexus/content/repositories/snapshots") {
                 authentication(userName: nexusUsername, password: nexusPassword);
             }
             pom.project {
                 name 'Log Collector'
                 artifactId = 'log-collector'
                 description 'This project aims to serve log files from local path or S3 over Vert.x eventbus'
-                url 'https://github.com/SercanKaraoglu/log-collector.git'
+                url 'https://dev.foreks.com/stash/scm/feed/log-collector.git'
                 scm {
-                    url 'https://github.com/SercanKaraoglu/log-collector'
-                    connection 'scm:git:git@github.com:SercanKaraoglu/log-collector.git'
-                    developerConnection 'scm:git:git@github.com:SercanKaraoglu/log-collector.git'
+                    url 'https://dev.foreks.com/stash/scm/feed/log-collector.git'
+                    connection 'scm:git:sercan.karaoglu@dev.foreks.com/stash/scm/feed/log-collector.git'
+                    developerConnection 'scm:git:sercan.karaoglu@dev.foreks.com/stash/scm/feed/log-collector.git'
                 }
                 licenses {
                     license {
