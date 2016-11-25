@@ -15,10 +15,12 @@ import rx.Observable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.zip.GZIPInputStream;
 
 public class S3FileReader implements FileReader {
     private AmazonS3 s3;
@@ -29,10 +31,12 @@ public class S3FileReader implements FileReader {
     }
 
     @Override
-    public Observable<String> listDirectory(String bucket_name) {
+    public Observable<String> listDirectory(String path) {
         return Observable.defer(() -> {
             try {
-                ObjectListing objectListing = s3.listObjects(new ListObjectsRequest().withBucketName(bucket_name));
+                ParsePath parsePath = new ParsePath(path).invoke();
+                if (parsePath.isAvailable()) return Observable.empty();
+                ObjectListing objectListing = s3.listObjects(new ListObjectsRequest().withBucketName(parsePath.getBucket()).withPrefix(parsePath.getKey()));
                 return Observable.from(objectListing.getObjectSummaries()).filter(objectSummary -> !Pattern.matches(".*\\/$", objectSummary.getKey())).map(S3ObjectSummary::getKey);
             } catch (AmazonClientException e) {
                 return Observable.error(e);
@@ -43,17 +47,22 @@ public class S3FileReader implements FileReader {
 
     @Override
     public Observable<String> source(String path) {
-        String[] paths = path.split("/");
-        if (paths.length < 2) {
-            return Observable.empty();
-        }
-        String bucket = paths[0];
-        String key = IntStream.rangeClosed(1, paths.length-1).mapToObj(i -> paths[i]).collect(Collectors.joining("/"));
+        ParsePath parsePath = new ParsePath(path).invoke();
+        if (parsePath.isAvailable()) return Observable.empty();
+        String bucket = parsePath.getBucket();
+        String key = parsePath.getKey();
         return Observable.create(subscriber -> {
-            S3ObjectInputStream s3ObjectInputStream = s3.getObject(new GetObjectRequest(bucket, key)).getObjectContent();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(s3ObjectInputStream));
             try {
-                while (true) {
+                S3ObjectInputStream s3ObjectInputStream = s3.getObject(new GetObjectRequest(bucket, key)).getObjectContent();
+                InputStream inputStream;
+                if (path.endsWith(".gz")) {
+                    inputStream = new GZIPInputStream(s3ObjectInputStream);
+                } else {
+                    inputStream = s3ObjectInputStream;
+                }
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                while (!subscriber.isUnsubscribed()) {
                     String line = reader.readLine();
                     if (line == null) {
                         subscriber.onCompleted();
@@ -65,5 +74,36 @@ public class S3FileReader implements FileReader {
                 subscriber.onError(e);
             }
         });
+    }
+
+    private class ParsePath {
+        private boolean myResult;
+        private String path;
+        private String bucket;
+        private String key;
+
+        public ParsePath(String path) {this.path = path;}
+
+        boolean isAvailable() {return myResult;}
+
+        public String getBucket() {
+            return bucket;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public ParsePath invoke() {
+            String[] paths = path.split("/");
+            if (paths.length < 2) {
+                myResult = true;
+                return this;
+            }
+            bucket = paths[0];
+            key = IntStream.rangeClosed(1, paths.length - 1).mapToObj(i -> paths[i]).collect(Collectors.joining("/"));
+            myResult = false;
+            return this;
+        }
     }
 }

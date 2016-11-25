@@ -19,6 +19,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'eclipse'
+    apply plugin: 'groovy'
     
     description = """Reads TIP log file and dissaminates it on eventbus"""
     
@@ -31,7 +32,7 @@ subprojects {
             resources { srcDir 'src/main/resources' }
         }
         test {
-            java { srcDir 'src/test/java' }
+            groovy {srcDir 'src/test/groovy'}
             resources { srcDir 'src/test/resources' }
         }
     }
