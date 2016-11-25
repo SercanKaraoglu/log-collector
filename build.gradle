@@ -24,7 +24,7 @@ subprojects {
     description = """Reads TIP log file and dissaminates it on eventbus"""
     
     group = 'io.andromeda'
-    version = '1.0.3'
+    version = '1.0.4-SNAPSHOT'
     
     sourceSets {
         main {
