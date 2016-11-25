@@ -66,6 +66,8 @@ public class S3FileReader implements FileReader {
                     String line = reader.readLine();
                     if (line == null) {
                         subscriber.onCompleted();
+                        reader.close();
+                        inputStream.close();
                         break;
                     }
                     subscriber.onNext(line);
