@@ -33,6 +33,10 @@ task generateServiceProxy(type: JavaCompile, description: 'Generates EBServicePr
                             "-AoutputDirectory=$destinationDir"]
 }
 
+/*
+Comment out this for pushing the project to your repo
+nexusRelease, nexusSnapshot, nexusUsername, nexusPassword
+should be defined
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
@@ -89,3 +93,4 @@ uploadArchives {
         }
     }
 }
+*/
