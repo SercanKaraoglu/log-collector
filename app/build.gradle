@@ -52,7 +52,7 @@ applicationDefaultJvmArgs = ['-Dconf=conf/$conf',
 dependencies {
     compile project(':api')
     compile 'io.vertx:vertx-service-discovery:3.3.3'
-    compile "com.foreks:vertx-config-launcher:0.9.8"
+    compile "com.foreks:vertx-config-launcher:0.9.4"
     compile "io.vertx:vertx-core:3.3.3"
     compile 'io.vertx:vertx-rx-java:3.3.3'
     compile 'io.vertx:vertx-service-proxy:3.3.3'

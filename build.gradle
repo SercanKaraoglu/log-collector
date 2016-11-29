@@ -44,6 +44,7 @@ subprojects {
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
 }
+/*
 import com.monochromeroad.gradle.plugin.aws.s3.S3Sync
 
 task downloadConfig(type: S3Sync) {
@@ -71,5 +72,5 @@ task uploadConfig(type: S3Sync) {
     from "${System.getProperty('user.dir')}/conf"
     into config.server.bucket
 }
-
+*/
 task wrapper(type: Wrapper) { gradleVersion = '2.14' }
