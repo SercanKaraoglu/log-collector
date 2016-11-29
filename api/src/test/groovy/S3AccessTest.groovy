@@ -7,11 +7,11 @@ import spock.lang.Specification
 class S3AccessTest extends Specification {
     
     @Shared
-            s3reader = new S3FileReader("foreks", "eu-central-1")
+            s3reader = new S3FileReader("your-bucket", "your-region")
     
     def "can list directory"() {
         when:
-        def dir = s3reader.listDirectory("feed-backup-foreks/logs/pegasus-logs/input")
+        def dir = s3reader.listDirectory("path/to/logs")
                           .collect({ -> [] }, { res, el -> res << el })
                           .toBlocking()
                           .single()
@@ -21,8 +21,8 @@ class S3AccessTest extends Specification {
     
     def "can read first line of gzip object"() {
         expect:
-        "[06:10:47,200][0]BDBu;Dt20151201;" == s3reader.source("feed-backup-foreks/logs/pegasus-logs/input.log.2015-12-01.gz")
-                                                       .toBlocking().first()
+        "Test" == s3reader.source("path/to/logs/input.log.2015-12-01.gz")
+                          .toBlocking().first()
         
     }
 }
